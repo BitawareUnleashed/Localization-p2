@@ -1,0 +1,33 @@
+﻿@page "/"
+@inject IStringLocalizer<ResourceLanguage> localizer
+@inject HttpClient Http
+@using BlazorLocalization.Shared;
+
+<PageTitle>Index</PageTitle>
+
+<h1>@localizer["HelloWorld"]</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<p>@txt</p>
+
+@code {
+
+    private Guitar[]? guitars;
+    private string txt = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var culture = Thread.CurrentThread.CurrentCulture;
+        //var s = await Http.GetFromJsonAsync<string>(@$"Guitar/{ culture.TwoLetterISOLanguageName}");
+        var s = await Http.GetAsync(@$"Guitar/{ culture.TwoLetterISOLanguageName}");
+        if (s != null)
+        {
+            txt =await s.Content.ReadAsStringAsync();
+            
+            StateHasChanged();
+        }
+    }
+}
