@@ -11,14 +11,13 @@ namespace BlazorLocalization.Server.Controllers
     [Route("[controller]")]
     public class GuitarController : ControllerBase
     {
+        private DataContext Datacontext { get; set; }
 
-        public DataContext Datacontext { get; set; }
-
-        private readonly ILogger<GuitarController> _logger;
+        private readonly ILogger<GuitarController> logger;
 
         public GuitarController(ILogger<GuitarController> logger, DataContext dataContext)
         {
-            _logger = logger;
+            this.logger = logger;
             this.Datacontext = dataContext;
         }
 
@@ -35,7 +34,7 @@ namespace BlazorLocalization.Server.Controllers
         [HttpGet("{language}")]
         public IActionResult Get(string language)
         {
-            var culture = Thread.CurrentThread.CurrentCulture;
+            var culture = new CultureInfo(language);
 
             var t = Language.ResourceManager.GetString("Temp", culture);
 
