@@ -22,7 +22,7 @@ Welcome to your new app.
     {
         var culture = Thread.CurrentThread.CurrentCulture;
         //var s = await Http.GetFromJsonAsync<string>(@$"Guitar/{ culture.TwoLetterISOLanguageName}");
-        var s = await Http.GetAsync(@$"Guitar/{ culture.TwoLetterISOLanguageName}");
+        var s = await Http.GetAsync(@$"Guitar/{ culture.TwoLetterISOLanguageName}/2");
         if (s != null)
         {
             txt =await s.Content.ReadAsStringAsync();

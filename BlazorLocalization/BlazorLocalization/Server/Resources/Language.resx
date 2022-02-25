@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Temp" xml:space="preserve">
-    <value>Temperature</value>
+  <data name="001" xml:space="preserve">
+    <value>Near a great forest there lived a poor woodcutter and his wife,</value>
+  </data>
+  <data name="002" xml:space="preserve">
+    <value>and his two children; the boy's name was Hansel and the girl's Grethel.</value>
+  </data>
+  <data name="003" xml:space="preserve">
+    <value>They had very little to bite or to sup, and once, when there was great dearth in the land,</value>
+  </data>
+  <data name="004" xml:space="preserve">
+    <value>the man could not even gain the daily bread.</value>
+  </data>
+  <data name="005" xml:space="preserve">
+    <value>As he lay in bed one night thinking of this,</value>
+  </data>
+  <data name="006" xml:space="preserve">
+    <value>and turning and tossing, he sighed heavily, and said to his wife,</value>
+  </data>
+  <data name="007" xml:space="preserve">
+    <value>"What will become of us? we cannot even feed our children; there is nothing left for ourselves."</value>
+  </data>
+  <data name="008" xml:space="preserve">
+    <value>"I will tell you what, husband," answered the wife;</value>
+  </data>
+  <data name="009" xml:space="preserve">
+    <value>"we will take the children early in the morning into the forest, where it is thickest; we will make them a fire, and we will give each of them a piece of bread, then we will go to our work and leave them alone; they will never find the way home again, and we shall be quit of them."</value>
   </data>
 </root>

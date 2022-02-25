@@ -1,9 +1,12 @@
 using BlazorLocalization.Server.Data;
+using BlazorLocalization.Server.HubSignalR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSignalR();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -54,6 +57,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 builder.Services.AddSingleton<DataContext>();
+builder.Services.AddSingleton<UiSender>();
 
 var app = builder.Build();
 
@@ -81,7 +85,9 @@ app.UseRouting();
 
 app.MapRazorPages();
 app.MapControllers();
+app.MapHub<UiCommunicationHub>("/communicationhub");
 app.MapFallbackToFile("index.html");
+
 
 app.Run();
 

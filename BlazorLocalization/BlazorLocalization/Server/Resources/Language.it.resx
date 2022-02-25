@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Temp" xml:space="preserve">
-    <value>AAAAAAAAAAAAAAAAAAAA</value>
+  <data name="001" xml:space="preserve">
+    <value>Davanti a un gran bosco abitava un povero taglialegna </value>
+  </data>
+  <data name="002" xml:space="preserve">
+    <value>che non aveva di che sfamarsi;</value>
+  </data>
+  <data name="003" xml:space="preserve">
+    <value>riusciva a stento a procurare il pane per sua moglie e i suoi due bambini:</value>
+  </data>
+  <data name="004" xml:space="preserve">
+    <value>Hänsel e Gretel.</value>
+  </data>
+  <data name="005" xml:space="preserve">
+    <value>Infine giunse un tempo in cui non pot‚ più provvedere neanche a questo e non sapeva più a che santo votarsi.</value>
+  </data>
+  <data name="006" xml:space="preserve">
+    <value>Una sera, mentre si voltava inquieto nel letto, la moglie gli disse:</value>
+  </data>
+  <data name="007" xml:space="preserve">
+    <value>"Ascolta marito mio, domattina all'alba prendi i due bambini,</value>
+  </data>
+  <data name="008" xml:space="preserve">
+    <value>dai a ciascuno un pezzetto di pane e conducili fuori in mezzo al bosco,</value>
+  </data>
+  <data name="009" xml:space="preserve">
+    <value>nel punto dov'è più fitto; accendi loro un fuoco, poi vai via e li lasci soli laggiù.</value>
   </data>
 </root>
