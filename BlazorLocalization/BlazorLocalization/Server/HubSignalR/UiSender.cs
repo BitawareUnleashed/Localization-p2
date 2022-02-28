@@ -4,24 +4,8 @@ namespace BlazorLocalization.Server.HubSignalR
 {
     public class UiSender
     {
-        private HubConnection hubConnection;
-        /// <summary>
-        /// Reconnection timings policy
-        /// </summary>
-        private readonly TimeSpan[] reconnectionTimeouts =
-        {
-            TimeSpan.FromSeconds(0),
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(2),
-            TimeSpan.FromSeconds(3),
-            TimeSpan.FromSeconds(5),
-            TimeSpan.FromSeconds(8),
-            TimeSpan.FromSeconds(13),
-            TimeSpan.FromSeconds(21),
-            TimeSpan.FromSeconds(34)
-        };
-
+        private HubConnection? hubConnection;
+        
         public UiSender()
         {
             Init();
@@ -34,7 +18,7 @@ namespace BlazorLocalization.Server.HubSignalR
                 if (hubConnection != null) return;
                 hubConnection = new HubConnectionBuilder()
                     .WithUrl(new Uri("https://localhost:7117/communicationhub"))
-                    .WithAutomaticReconnect(reconnectionTimeouts)
+                    .WithAutomaticReconnect(new[] { TimeSpan.FromSeconds(1) })
                     .Build();
 
                 Task.Run(async () =>
@@ -60,7 +44,7 @@ namespace BlazorLocalization.Server.HubSignalR
         {
             try
             {
-                await hubConnection.SendAsync("MessageAvailable", s);
+                await hubConnection!.SendAsync("MessageAvailable", s);
             }
             catch (Exception ex)
             {

@@ -13,28 +13,31 @@ namespace BlazorLocalization.Client.Pages
         private string txt = string.Empty;
 
         [CascadingParameter]
-        public MainLayout Layout { get; set; }
+        public MainLayout? Layout { get; set; }
 
         protected override void OnInitialized()
         {
-            Layout.MessageReceived += Layout_MessageReceived;
             base.OnInitialized();
-        }
-
-        private async void Layout_MessageReceived(object? sender, string e)
-        {
-            var culture = Thread.CurrentThread.CurrentCulture;
-            var s = await Http.GetAsync(@$"Messages/{ culture.TwoLetterISOLanguageName}/{e}");
-            if (s != null)
-            {
-                txt = e.ToString() +" - "+ await s.Content.ReadAsStringAsync();
-            }
-            StateHasChanged();
         }
 
         protected override async Task OnInitializedAsync()
         {
-            var s = await Http.GetAsync(@$"Messages");
+            _ = await Http.GetAsync(@$"Messages");
+        }
+
+        protected override async void OnParametersSet()
+        {
+            var culture = Thread.CurrentThread.CurrentCulture;
+            var s = await Http.GetAsync(@$"Messages/{ culture.TwoLetterISOLanguageName}/{Layout!.Message}");
+            if (s != null)
+            {
+                if (Layout.Message.ToString().Length > 0)
+                {
+                    txt = Layout.Message.ToString() + " - " + await s.Content.ReadAsStringAsync();
+                }
+            }
+            StateHasChanged();
+            base.OnParametersSet();
         }
     }
 }

@@ -9,38 +9,21 @@ namespace BlazorLocalization.Client.Shared
 {
     public partial class MainLayout
     {
-        public event EventHandler<string> MessageReceived;
+        private HubConnection hubConnection = null!;
 
-        private HubConnection hubConnection;
-
-        /// <summary>
-        /// Reconnection timings policy
-        /// </summary>
-        private readonly TimeSpan[] reconnectionTimeouts =
-        {
-            TimeSpan.FromSeconds(0),
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(1),
-            TimeSpan.FromSeconds(2),
-            TimeSpan.FromSeconds(3),
-            TimeSpan.FromSeconds(5),
-            TimeSpan.FromSeconds(8),
-            TimeSpan.FromSeconds(13),
-            TimeSpan.FromSeconds(21),
-            TimeSpan.FromSeconds(34)
-        };
+        public string Message { get; set; } = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
             // SignalR Hub
             hubConnection = new HubConnectionBuilder()
                 .WithUrl(NavigationManager.ToAbsoluteUri("/communicationhub"))
-                .WithAutomaticReconnect(reconnectionTimeouts)
+                .WithAutomaticReconnect(new[] { TimeSpan.FromSeconds(1) })
                 .Build();
 
             hubConnection.On<string>("MessageAvailable", (e) =>
             {
-                MessageReceived?.Invoke(this, e);
+                Message = e;
                 StateHasChanged();
             });
 
