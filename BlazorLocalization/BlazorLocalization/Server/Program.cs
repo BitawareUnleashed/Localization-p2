@@ -1,4 +1,3 @@
-using BlazorLocalization.Server.Data;
 using BlazorLocalization.Server.HubSignalR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -21,7 +20,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
         var problemDetails = new ProblemDetails
         {
             Status = statusCode,
-            Title ="Dal DB",// Messages.ValidationErrorsOccurred,
+            Title ="From DB",// Messages.ValidationErrorsOccurred,
             Type = $"https://httpstatuses.com/{statusCode}",
             Instance = httpContext.Request.Path
         };
@@ -56,7 +55,6 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.AddSingleton<DataContext>();
 builder.Services.AddSingleton<UiSender>();
 
 var app = builder.Build();

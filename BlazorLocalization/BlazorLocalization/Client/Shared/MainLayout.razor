@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
 
+<CascadingValue Value="@this">
 <div class="page">
     
     <div class="sidebar">
@@ -9,7 +10,6 @@
 
     <main>
         <div class="top-row px-4">
-            <p>@BackEndMessage</p>
              <LanguageSelector />
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
         </div>
@@ -19,3 +19,4 @@
         </article>
     </main>
 </div>
+</CascadingValue>

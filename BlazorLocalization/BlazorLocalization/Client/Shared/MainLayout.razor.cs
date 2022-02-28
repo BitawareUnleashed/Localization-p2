@@ -9,9 +9,9 @@ namespace BlazorLocalization.Client.Shared
 {
     public partial class MainLayout
     {
-        private HubConnection hubConnection;
+        public event EventHandler<string> MessageReceived;
 
-        public string BackEndMessage { get; private set; }
+        private HubConnection hubConnection;
 
         /// <summary>
         /// Reconnection timings policy
@@ -40,7 +40,7 @@ namespace BlazorLocalization.Client.Shared
 
             hubConnection.On<string>("MessageAvailable", (e) =>
             {
-                BackEndMessage = e;
+                MessageReceived?.Invoke(this, e);
                 StateHasChanged();
             });
 

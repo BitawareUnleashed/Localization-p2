@@ -1,7 +1,6 @@
 ﻿@page "/"
 @inject IStringLocalizer<ResourceLanguage> localizer
 @inject HttpClient Http
-@using BlazorLocalization.Shared;
 
 <PageTitle>Index</PageTitle>
 
@@ -13,21 +12,3 @@ Welcome to your new app.
 
 <p>@txt</p>
 
-@code {
-
-    private Guitar[]? guitars;
-    private string txt = string.Empty;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var culture = Thread.CurrentThread.CurrentCulture;
-        //var s = await Http.GetFromJsonAsync<string>(@$"Guitar/{ culture.TwoLetterISOLanguageName}");
-        var s = await Http.GetAsync(@$"Guitar/{ culture.TwoLetterISOLanguageName}/2");
-        if (s != null)
-        {
-            txt =await s.Content.ReadAsStringAsync();
-            
-            StateHasChanged();
-        }
-    }
-}
