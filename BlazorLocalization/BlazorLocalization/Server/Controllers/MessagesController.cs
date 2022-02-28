@@ -28,13 +28,11 @@ namespace BlazorLocalization.Server.Controllers
                 for (int i = 1; i < 10; i++)
                 {
                     await Task.Delay(TimeSpan.FromSeconds(1));
-                    await SendSimpleMessageAsync(i.ToString("000"));
+                    SendSimpleMessageAsync(i.ToString("000"));
                 }
             });
             return Ok();
         }
-
-
 
         [HttpGet("{language}/{ID}")]
         public IActionResult Get(string language, string ID)
@@ -45,9 +43,8 @@ namespace BlazorLocalization.Server.Controllers
 
             return Ok(t);
         }
-        //await Task.Delay(TimeSpan.FromSeconds(5));
 
-        private async Task SendSimpleMessageAsync(string message)
+        private void SendSimpleMessageAsync(string message)
         {
             this.uiSender.SendAsync(message);
         }
