@@ -25,7 +25,7 @@ namespace BlazorLocalization.Server.Controllers
 
             Task.Run(async () =>
             {
-                for (int i = 1; i < 10; i++)
+                for (var i = 1; i < 10; i++)
                 {
                     await Task.Delay(TimeSpan.FromSeconds(1));
                     SendSimpleMessageAsync(i.ToString("000"));
@@ -34,12 +34,12 @@ namespace BlazorLocalization.Server.Controllers
             return Ok();
         }
 
-        [HttpGet("{language}/{ID}")]
-        public IActionResult Get(string language, string ID)
+        [HttpGet("{language}/{id}")]
+        public IActionResult Get(string language, string id)
         {
             var culture = new CultureInfo(language);
 
-            var t = Language.ResourceManager.GetString(ID, culture);
+            var t = Language.ResourceManager.GetString(id, culture);
 
             return Ok(t);
         }

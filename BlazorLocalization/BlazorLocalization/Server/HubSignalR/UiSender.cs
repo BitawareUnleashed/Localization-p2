@@ -11,7 +11,7 @@ namespace BlazorLocalization.Server.HubSignalR
             Init();
         }
 
-        public void Init()
+        void Init()
         {
             try
             {
@@ -38,8 +38,8 @@ namespace BlazorLocalization.Server.HubSignalR
                 Console.WriteLine("INIT-" + ex.Message);
             }
         }
-
-
+        
+        
         public async void SendAsync(string s)
         {
             try

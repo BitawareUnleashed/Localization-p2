@@ -4,7 +4,7 @@
 @inject IStringLocalizer<ResourceLanguage> localizer
 
 <strong>@localizer["Language"]</strong>
-<select class="form-control" @bind="Culture" style="width:300px; margin-left:10px;">
+<select class="form-control" @bind="Culture">
     @foreach (var culture in cultures)
     {
         <option value="@culture">@culture.DisplayName</option>
@@ -14,7 +14,7 @@
 @code
 {
     [Inject]
-    public IJSRuntime JSRuntime { get; set; }
+    public IJSRuntime? JsRuntime { get; set; }
     CultureInfo[] cultures = new[]
             {
             new CultureInfo("en"),
@@ -27,7 +27,7 @@
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JsRuntime!;
                 js.InvokeVoid("blazorLanguage.set", value.Name);
                 NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
             }

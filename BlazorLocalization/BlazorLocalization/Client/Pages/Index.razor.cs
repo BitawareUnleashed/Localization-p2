@@ -22,13 +22,13 @@ namespace BlazorLocalization.Client.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            _ = await Http.GetAsync(@$"Messages");
+            _ = await http.GetAsync(@$"Messages");
         }
 
         protected override async void OnParametersSet()
         {
             var culture = Thread.CurrentThread.CurrentCulture;
-            var s = await Http.GetAsync(@$"Messages/{ culture.TwoLetterISOLanguageName}/{Layout!.Message}");
+            var s = await http.GetAsync(@$"Messages/{ culture.TwoLetterISOLanguageName}/{Layout!.Message}");
             if (s != null)
             {
                 if (Layout.Message.ToString().Length > 0)
