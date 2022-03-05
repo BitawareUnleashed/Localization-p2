@@ -1,6 +1,8 @@
 ﻿@page "/"
+@using BlazorLocalization.Client.Services
 @inject IStringLocalizer<ResourceLanguage> localizer
 @inject HttpClient http
+@inject LocalizedMessageService localizedMessageService
 
 <PageTitle>Index</PageTitle>
 
